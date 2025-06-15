@@ -31,7 +31,8 @@ const SignIn = () => {
             if (data) {
                 // Handle successful sign-in, e.g., redirect to dashboard or show a success message
                 console.log("Sign-in successful:", data);
-                router.replace("/dashboard");
+                localStorage.setItem("user", JSON.stringify(data.user))
+                router.replace("/agents");
                 
             }
         } catch (error) {

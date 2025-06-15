@@ -1,16 +1,22 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { authClient } from '@/auth-client';
 import { redirect } from 'next/navigation';
+import SideBar from '@/components/shared/SideBar';
+import MobileNavBar from '@/components/shared/MobileNavBar';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-    // This is the root layout for the application
     const { data: session } = authClient.useSession();
-    if (session) {
-        redirect('/dashboard');
+    useEffect(() => {
+        if (!session) {
+            redirect("/sign-in");
+        }
     }
+    , [session]);
     return (
-        <div>
+        <div className='flex flex-col md:flex-row'>
+            <MobileNavBar />
+            <SideBar />
             {children}
         </div>
     )

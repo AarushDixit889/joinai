@@ -20,7 +20,7 @@ const SignUp = () => {
     const createAccount = async () => {
         try {
             // Add your account creation logic here
-            const { data, error } = await authClient.signUp.email({ ...formData, callbackURL: "/dashboard" }, {
+            const { data, error } = await authClient.signUp.email({ ...formData, callbackURL: "/agents" }, {
                 onRequest: (ctx) => {
                     setLoading(true);
                 },
